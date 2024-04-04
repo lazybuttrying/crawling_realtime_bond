@@ -1,0 +1,12 @@
+2024-03-27 07:53:45,366 - INFO - [duplication check] new: 3
+2024-03-27 07:53:45,367 - INFO - [duplication check] old: 0
+2024-03-27 07:53:45,369 - INFO - [Shape] New data: (356, 14), Old data: (0, 14)
+2024-03-27 07:53:45,371 - INFO - [duplication check] total: 0
+2024-03-27 07:53:45,469 - INFO - Data successfully updated: (356, 14)
+2024-03-27 07:53:45,469 - INFO - -----
+2024-03-27 07:54:03,116 - INFO - [duplication check] new: 3
+2024-03-27 07:54:03,117 - INFO - [duplication check] old: 0
+2024-03-27 07:54:03,119 - INFO - [Shape] New data: (336, 14), Old data: (0, 14)
+2024-03-27 07:54:03,120 - INFO - [duplication check] total: 0
+2024-03-27 07:54:03,214 - INFO - Data successfully updated: (336, 14)
+2024-03-27 07:54:03,214 - INFO - -----
