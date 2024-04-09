@@ -1,23 +1,28 @@
-from util import root_dir
-from flask import Flask, send_file
-import os
+from fastapi import FastAPI, File, Response
+from fastapi.responses import HTMLResponse, FileResponse
+from os import listdir
+from realtime.util import root_dir
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
-def index():
-    files = os.listdir(root_dir)
+
+@app.get("/", response_class=HTMLResponse)
+async def index():
+    files = listdir(root_dir)
+    file_links = ''.join([f'<li><a href="/download/{file}">{file}</a></li>' for file in files])
     return f"""
     <h1>파일 목록</h1>
     <ul>
-        {''.join([f'<li><a href="/download/{file}">{file}</a></li>' for file in files])}
+        {file_links}
     </ul>
     """
 
-@app.route('/download/<path:filename>')
-def download(filename):
-    return send_file(f"{root_dir}/{filename}", as_attachment=True)
+@app.get("/download/{filename:path}")
+async def download(filename: str, response: Response):
+    file_path = f"{root_dir}/{filename}"
+    return FileResponse(path=file_path, filename=filename, headers={"Content-Disposition": "attachment"})
 
-if __name__ == '__main__':
-    app.run(port=8000, host='0.0.0.0', debug=True)
-    
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+

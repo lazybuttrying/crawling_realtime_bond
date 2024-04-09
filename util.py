@@ -2,7 +2,15 @@ import pandas as pd
 from datetime import datetime as dt
 from datetime import timedelta
 
-today = (dt.now()+timedelta(hours=9)).strftime("%Y%m%d")
+today = (dt.now()+timedelta(hours=9))
+if today.weekday() == 0:
+    yesterday = today-timedelta(days=3)
+else:
+    yesterday = today-timedelta(days=1)
+
+today = today.strftime("%Y%m%d")
+yesterday = yesterday.strftime("%Y%m%d")
+
         
 root_dir = "/home/dodev0987/realtime/data"
 # root_dir ="./data"

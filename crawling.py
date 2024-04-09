@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import hashlib
 import xml.etree.ElementTree as ET
 import requests
@@ -6,6 +7,7 @@ import logging
 import traceback
 from util import columns, today, read_file_nan_check
 from util import today_file as filename
+from util import root_dir, yesterday
 
 # 로그 설정
 logging.basicConfig(filename='crawling.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -46,11 +48,18 @@ if __name__ == "__main__":
         df = df.sort_values(["날짜", "시간"])
         df.to_excel(f"new.xlsx", engine="openpyxl", index=False)
         df = pd.read_excel("new.xlsx")
-        
+
         result_today, msg = read_file_nan_check(filename)
         logging.info(f"today file: {msg}")
         result_today = result_today[columns]
-           
+        if result_today.shape[0] != 0: 
+            val = result_today.iloc[0,0]
+            logging.info(f"today:{today}, {type(today)} & yesterday:{yesterday}, {type(yesterday)}")
+            if val != int(yesterday):
+                result_today.to_excel(f"{root_dir}/result_today_{yesterday}.xlsx", engine="openpyxl", index=False)
+                os.remove(filename)
+                result_today, msg = read_file_nan_check(filename)
+
         df = set_hashes(df)
         result_today = set_hashes(result_today)
         logging.info(f"[duplication check] new: {df.duplicated().sum()}")
