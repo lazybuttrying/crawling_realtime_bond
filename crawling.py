@@ -55,7 +55,7 @@ if __name__ == "__main__":
         if result_today.shape[0] != 0: 
             val = result_today.iloc[0,0]
             logging.info(f"today:{today}, {type(today)} & yesterday:{yesterday}, {type(yesterday)}")
-            if val != int(yesterday):
+            if val == int(yesterday):
                 result_today.to_excel(f"{root_dir}/result_today_{yesterday}.xlsx", engine="openpyxl", index=False)
                 os.remove(filename)
                 result_today, msg = read_file_nan_check(filename)
