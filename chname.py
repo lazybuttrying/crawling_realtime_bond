@@ -2,7 +2,8 @@ import os
 import pandas as pd
 import logging
 import traceback
-from util import today, read_file_nan_check
+from util import today, root_dir, read_file_nan_check
+from util import today_file as filename
 
 logging.basicConfig(filename='chname.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
