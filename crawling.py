@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 import hashlib
 import xml.etree.ElementTree as ET
 import requests
@@ -52,13 +51,13 @@ if __name__ == "__main__":
         result_today, msg = read_file_nan_check(filename)
         logging.info(f"today file: {msg}")
         result_today = result_today[columns]
-        if result_today.shape[0] != 0: 
-            val = result_today.iloc[0,0]
-            logging.info(f"today:{today}, {type(today)} & yesterday:{yesterday}, {type(yesterday)}")
-            if val == int(yesterday):
-                result_today.to_excel(f"{root_dir}/result_today_{yesterday}.xlsx", engine="openpyxl", index=False)
-                os.remove(filename)
-                result_today, msg = read_file_nan_check(filename)
+        # if result_today.shape[0] != 0: 
+        #     val = result_today.iloc[0,0]
+        #     logging.info(f"today:{today}, {type(today)} & yesterday:{yesterday}, {type(yesterday)}")
+        #     if val == int(yesterday):
+        #         result_today.to_excel(f"{root_dir}/result_today_{yesterday}.xlsx", engine="openpyxl", index=False)
+        #         os.remove(filename)
+        #         result_today, msg = read_file_nan_check(filename)
 
         df = set_hashes(df)
         result_today = set_hashes(result_today)
