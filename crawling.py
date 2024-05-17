@@ -9,7 +9,7 @@ from util import today_file as filename
 from util import root_dir, yesterday
 
 # 로그 설정
-logging.basicConfig(filename='crawling.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='log/crawling.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 url = "https://www.kofiabond.or.kr/proframeWeb/XMLSERVICES/"
 

@@ -5,7 +5,7 @@ import traceback
 from util import today, root_dir, read_file_nan_check
 from util import today_file as filename
 
-logging.basicConfig(filename='chname.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='log/chname.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 result_today, msg = read_file_nan_check(filename)
 logging.info(f"today file: {msg}")
